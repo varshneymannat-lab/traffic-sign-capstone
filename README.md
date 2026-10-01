@@ -1,12 +1,12 @@
 # Real-Time Traffic Sign Detection and Classification
 
-This is an original graduation capstone project inspired by the example project structure, but with a simpler and more student-friendly topic. The system detects traffic-sign-like objects in road images or videos and classifies each crop into a sign category.
+This graduation capstone project focuses on real-time traffic sign detection and classification for driver-assistance applications. The system detects traffic-sign-like objects in road images or videos and classifies each crop into a sign category.
 
 The project follows the requested modern machine-learning workflow: Hydra configuration, PyTorch Lightning training, TensorBoard logging, DVC data/model tracking, Docker reproducibility, and ONNX export.
 
 ## Why I Selected This Project
 
-I selected traffic sign detection because it is practical but manageable for a first computer-vision graduation project. Traffic signs are visually clear, have meaningful categories, and connect naturally to road safety and driver-assistance systems.
+I selected traffic sign detection because it is practical, focused, and connected to road safety. Traffic signs are visually clear, have meaningful categories, and connect naturally to driver-assistance systems.
 
 Compared with a more complex vehicle type/color project, this scope is easier to explain and defend:
 
@@ -54,7 +54,7 @@ src/
   export_onnx.py         Export classifier to ONNX
 scripts/                 Dataset preparation and demo-data generation
 tests/                   Unit/smoke tests
-report/                  Technical report and mentor defense notes
+report/                  Technical report and presentation notes
 dvc.yaml                 Reproducible pipeline stages
 Dockerfile               Reproducible environment
 ```
@@ -75,7 +75,7 @@ Supported labels are configured in [configs/data/traffic_signs.yaml](/Users/mann
 
 ## Quick Demo
 
-The repository includes a small synthetic traffic-sign dataset generator. This is useful for presenting the workflow without downloading a large dataset.
+The repository includes a small synthetic traffic-sign dataset generator. This is useful for demonstrating the workflow without downloading a large dataset.
 
 ```bash
 make demo-data
@@ -88,7 +88,7 @@ Or run the DVC pipeline:
 dvc repro
 ```
 
-The generated data is for demonstration and smoke testing. A real project submission can replace it with a public traffic sign dataset such as GTSDB/GTSRB or a small custom annotated dataset.
+The generated data is for demonstration and pipeline testing. A real project submission can replace it with a public traffic sign dataset such as GTSDB/GTSRB or a small custom annotated dataset.
 
 ## Setup
 
@@ -141,7 +141,7 @@ Pipeline stages:
 
 - `demo_data`: creates a tiny synthetic traffic sign dataset.
 - `prepare`: validates and splits annotations.
-- `train`: runs a one-epoch smoke training job.
+- `train`: runs a one-epoch demonstration training job.
 - `export`: exports the classifier to ONNX.
 
 The default DVC run is intentionally lightweight so it can be reproduced during review. For a more serious experiment, use a real dataset and train longer:
@@ -157,9 +157,9 @@ docker build -t traffic-sign-capstone .
 docker run --rm -it -v "$PWD:/workspace" traffic-sign-capstone python3 -m src.train
 ```
 
-## Mentor Defense Talking Points
+## Presentation Talking Points
 
-- I chose traffic signs because they are visually clear and beginner-friendly, but still useful in driver-assistance systems.
+- I chose traffic signs because they are visually clear and useful in driver-assistance systems.
 - I used a two-stage pipeline because it is easier to understand: first detect a sign, then classify the crop.
 - I used ResNet-18 because it is a standard CNN backbone and not too large.
 - I used Hydra and Lightning so experiments are organized and reproducible.
@@ -168,4 +168,4 @@ docker run --rm -it -v "$PWD:/workspace" traffic-sign-capstone python3 -m src.tr
 
 ## Notes
 
-The included ONNX/checkpoint artifacts are smoke-demo artifacts, not final research-quality models. For final presentation results, replace the synthetic data with real traffic sign images, run training, and report accuracy, precision, recall, and F1-score.
+The included ONNX/checkpoint artifacts are demonstration artifacts, not final research-quality models. For final presentation results, replace the synthetic data with real traffic sign images, run training, and report accuracy, precision, recall, and F1-score.

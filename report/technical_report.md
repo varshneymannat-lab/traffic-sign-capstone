@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This project presents a beginner-friendly computer-vision system for detecting and classifying traffic signs in road images or video. The system uses a two-stage design: a YOLO detector locates sign-like objects, and a ResNet-18 classifier predicts the sign category from each cropped region. The repository includes Hydra configuration, PyTorch Lightning training, TensorBoard logging, DVC pipeline tracking, Docker reproducibility, and ONNX export.
+This project presents a computer-vision system for detecting and classifying traffic signs in road images or video. The system uses a two-stage design: a YOLO detector locates sign-like objects, and a ResNet-18 classifier predicts the sign category from each cropped region. The repository includes Hydra configuration, PyTorch Lightning training, TensorBoard logging, DVC pipeline tracking, Docker reproducibility, and ONNX export.
 
 ## 1. Introduction
 
@@ -20,7 +20,7 @@ The expected dataset contains images with bounding boxes around traffic signs an
 image_path,xmin,ymin,xmax,ymax,sign_label
 ```
 
-The repository also includes a synthetic data generator for smoke testing. It creates simple sign-like images for five categories: stop, speed limit, traffic light, pedestrian crossing, and no entry. This synthetic data is not meant to replace a real dataset; it exists to demonstrate the pipeline.
+The repository also includes a synthetic data generator for pipeline testing. It creates simple sign-like images for five categories: stop, speed limit, traffic light, pedestrian crossing, and no entry. This synthetic data is not meant to replace a real dataset; it exists to demonstrate the pipeline.
 
 ### 2.2 Preprocessing
 
@@ -40,7 +40,7 @@ Classification metrics include accuracy, macro precision, macro recall, and macr
 
 ## 3. Experiments
 
-The repository supports TensorBoard tracking for training and validation curves. A lightweight DVC pipeline runs a one-epoch smoke training job so the full workflow can be reproduced quickly.
+The repository supports TensorBoard tracking for training and validation curves. A lightweight DVC pipeline runs a one-epoch demonstration training job so the full workflow can be reproduced quickly.
 
 For final experimentation, the recommended comparisons are:
 
@@ -64,7 +64,7 @@ These tools make the project easier to rerun, explain, and improve.
 
 ## 5. Discussion
 
-The two-stage approach is useful for a student project because each part is understandable. YOLO handles localization, and the classifier handles category prediction. The main limitation is that the included synthetic dataset is simple. Real road images introduce challenges such as blur, lighting changes, small signs, occlusion, and unusual camera angles.
+The two-stage approach is useful because each part has a clear role. YOLO handles localization, and the classifier handles category prediction. The main limitation is that the included synthetic dataset is simple. Real road images introduce challenges such as blur, lighting changes, small signs, occlusion, and unusual camera angles.
 
 Future work should include training or fine-tuning on a real traffic sign dataset and measuring detection mAP in addition to classification metrics.
 
