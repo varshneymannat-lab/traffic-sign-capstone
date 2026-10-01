@@ -1,0 +1,9 @@
+defaults:
+  - data: traffic_signs
+  - model: sign_resnet
+  - paths: default
+  - _self_
+
+ckpt_path: models/checkpoints/best.ckpt
+output_path: models/traffic_sign_classifier.onnx
+opset_version: 17

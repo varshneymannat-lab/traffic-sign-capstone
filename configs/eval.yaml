@@ -1,0 +1,8 @@
+defaults:
+  - data: traffic_signs
+  - model: sign_resnet
+  - trainer: default
+  - paths: default
+  - _self_
+
+ckpt_path: models/checkpoints/best.ckpt

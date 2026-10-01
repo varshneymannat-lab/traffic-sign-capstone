@@ -1,0 +1,36 @@
+stages:
+  demo_data:
+    cmd: python3 scripts/create_demo_dataset.py --output-dir data/raw --samples-per-class 2
+    deps:
+      - scripts/create_demo_dataset.py
+    outs:
+      - data/raw/annotations.csv
+      - data/raw/images
+
+  prepare:
+    cmd: python3 scripts/prepare_dataset.py --input data/raw/annotations.csv --output data/processed/annotations_split.csv
+    deps:
+      - scripts/prepare_dataset.py
+      - data/raw/annotations.csv
+    outs:
+      - data/processed/annotations_split.csv
+
+  train:
+    cmd: python3 -m src.train model.pretrained=false trainer.max_epochs=1 data.batch_size=16 data.num_workers=0 test_after_training=false
+    deps:
+      - src
+      - configs
+      - data/processed/annotations_split.csv
+    outs:
+      - models/checkpoints
+    metrics:
+      - logs/metrics.json:
+          cache: false
+
+  export:
+    cmd: python3 -m src.export_onnx model.pretrained=false ckpt_path=models/checkpoints/best.ckpt output_path=models/traffic_sign_classifier.onnx
+    deps:
+      - src/export_onnx.py
+      - models/checkpoints/best.ckpt
+    outs:
+      - models/traffic_sign_classifier.onnx

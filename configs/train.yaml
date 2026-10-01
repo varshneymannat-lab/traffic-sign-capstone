@@ -1,0 +1,13 @@
+defaults:
+  - data: traffic_signs
+  - model: sign_resnet
+  - trainer: default
+  - logger: tensorboard
+  - callbacks: default
+  - paths: default
+  - _self_
+
+seed: 42
+train: true
+test_after_training: true
+ckpt_path: null

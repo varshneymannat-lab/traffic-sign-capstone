@@ -1,0 +1,83 @@
+schema: '2.0'
+stages:
+  demo_data:
+    cmd: python3 scripts/create_demo_dataset.py --output-dir data/raw 
+      --samples-per-class 2
+    deps:
+    - path: scripts/create_demo_dataset.py
+      hash: md5
+      md5: 3909b5abc7280cc91fb4bd0dea636763
+      size: 4451
+    outs:
+    - path: data/raw/annotations.csv
+      hash: md5
+      md5: ed35bb3b8560d4fbec456bceb59d9cdb
+      size: 630
+    - path: data/raw/images
+      hash: md5
+      md5: 04236ec45ebeb3c97cd9171d059a3429.dir
+      size: 45070
+      nfiles: 10
+  prepare:
+    cmd: python3 scripts/prepare_dataset.py --input data/raw/annotations.csv 
+      --output data/processed/annotations_split.csv
+    deps:
+    - path: data/raw/annotations.csv
+      hash: md5
+      md5: ed35bb3b8560d4fbec456bceb59d9cdb
+      size: 630
+    - path: scripts/prepare_dataset.py
+      hash: md5
+      md5: 36bb3f8bb493c48b82fd5ae67ed0933e
+      size: 2159
+    outs:
+    - path: data/processed/annotations_split.csv
+      hash: md5
+      md5: 8ea84fdd3d0064238ba83f99227fdaa1
+      size: 692
+  train:
+    cmd: python3 -m src.train model.pretrained=false trainer.max_epochs=1 
+      data.batch_size=16 data.num_workers=0 test_after_training=false
+    deps:
+    - path: configs
+      hash: md5
+      md5: 44dfe1058743e3dae12064288a9d2798.dir
+      size: 2152
+      nfiles: 10
+    - path: data/processed/annotations_split.csv
+      hash: md5
+      md5: 8ea84fdd3d0064238ba83f99227fdaa1
+      size: 692
+    - path: src
+      hash: md5
+      md5: 51dc9b44d00739e11e30c8dacf0c9d32.dir
+      size: 14605
+      nfiles: 12
+    outs:
+    - path: logs/metrics.json
+      hash: md5
+      md5: a248b6ef032dab7f9c30fcf846d45195
+      size: 773
+    - path: models/checkpoints
+      hash: md5
+      md5: e7552039d1b19b897828695892649355.dir
+      size: 268565610
+      nfiles: 2
+  export:
+    cmd: python3 -m src.export_onnx model.pretrained=false 
+      ckpt_path=models/checkpoints/best.ckpt 
+      output_path=models/traffic_sign_classifier.onnx
+    deps:
+    - path: models/checkpoints/best.ckpt
+      hash: md5
+      md5: e72403c1a7d4d1d5e26b850fa0d9caeb
+      size: 134282773
+    - path: src/export_onnx.py
+      hash: md5
+      md5: da2c29339fa2ca5af8701adb48a7db57
+      size: 1066
+    outs:
+    - path: models/traffic_sign_classifier.onnx
+      hash: md5
+      md5: 40e0c506c46b7d8dfb110b5945ed1a9b
+      size: 44708253

@@ -1,0 +1,14 @@
+defaults:
+  - data: traffic_signs
+  - model: sign_resnet
+  - paths: default
+  - _self_
+
+input_video: data/raw/sample.mp4
+output_video: outputs/annotated_sample.mp4
+classifier_ckpt: models/checkpoints/best.ckpt
+yolo_model: yolo11n.pt
+device: cpu
+conf_threshold: 0.35
+iou_threshold: 0.5
+max_frames: null
