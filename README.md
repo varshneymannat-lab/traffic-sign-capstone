@@ -165,7 +165,3 @@ docker run --rm -it -v "$PWD:/workspace" traffic-sign-capstone python3 -m src.tr
 - I used Hydra and Lightning so experiments are organized and reproducible.
 - I used DVC so data and model artifacts can be tracked separately from Git code.
 - I exported to ONNX because it shows how a trained model can be prepared for deployment.
-
-## Notes
-
-The included ONNX/checkpoint artifacts are demonstration artifacts, not final research-quality models. For final presentation results, replace the synthetic data with real traffic sign images, run training, and report accuracy, precision, recall, and F1-score.
