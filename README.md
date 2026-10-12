@@ -1,8 +1,8 @@
 # Real-Time Traffic Sign Detection and Classification
 
-This graduation capstone project focuses on real-time traffic sign detection and classification for driver-assistance applications. The system detects traffic-sign-like objects in road images or videos and classifies each crop into a sign category.
+This graduation capstone explores traffic sign detection and classification for driver-assistance applications. The prototype detects selected sign-like objects in video frames and classifies their crops. Real-road accuracy and processing speed remain to be evaluated.
 
-The project follows the requested modern machine-learning workflow: Hydra configuration, PyTorch Lightning training, TensorBoard logging, DVC data/model tracking, Docker reproducibility, and ONNX export.
+The repository includes Hydra configuration, PyTorch Lightning training, TensorBoard logging, a DVC pipeline, a Docker environment definition, and classifier ONNX export.
 
 ## Why I Selected This Project
 
@@ -54,7 +54,7 @@ src/
   export_onnx.py         Export classifier to ONNX
 scripts/                 Dataset preparation and demo-data generation
 tests/                   Unit tests
-report/                  Technical report and presentation notes
+report/                  Technical report and experimental results
 dvc.yaml                 Reproducible pipeline stages
 Dockerfile               Reproducible environment
 ```
@@ -71,7 +71,7 @@ images/frame_0002.jpg,94,25,156,87,speed_limit
 
 `image_path` is relative to `data/raw/` unless it is an absolute path. Bounding boxes use pixel coordinates.
 
-Supported labels are configured in [configs/data/traffic_signs.yaml](/Users/mannatvarshney/Documents/New%20project/traffic_sign_capstone/configs/data/traffic_signs.yaml).
+Supported labels are configured in [configs/data/traffic_signs.yaml](configs/data/traffic_signs.yaml).
 
 ## Quick Demo
 
@@ -88,12 +88,12 @@ Or run the DVC pipeline:
 dvc repro
 ```
 
-The generated data is for demonstration and pipeline testing. A real project submission can replace it with a public traffic sign dataset such as GTSDB/GTSRB or a small custom annotated dataset.
+The generated data is for demonstration and pipeline testing. Evaluation on real traffic-sign images is future work.
 
-## Report And Presentation
+## Technical Report
 
-- Technical report: [report/technical_report.md](/Users/mannatvarshney/Documents/New%20project/traffic_sign_capstone/report/technical_report.md)
-- Presentation notes: [report/presentation_notes.md](/Users/mannatvarshney/Documents/New%20project/traffic_sign_capstone/report/presentation_notes.md)
+- [Read the technical report](report/technical_report.md).
+- [Open or download the four-page PDF](report/technical_report.pdf).
 
 ## Setup
 
@@ -159,7 +159,7 @@ python3 -m src.train model.pretrained=true trainer.max_epochs=20
 
 [Download the 20-second synthetic demonstration video](demo/traffic_sign_demo.mp4).
 
-The [interpretation guide](report/video_demo_notes.md) explains each example.
+The [video results](report/video_demo_results.md) describe each example.
 The video uses a separately trained classifier and generated images, and shows
 actual predictions and missed detections. It does not replace evaluation on real
 road footage. The presentation copy in `demo/` is included in Git tracking.

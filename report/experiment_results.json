@@ -1,0 +1,229 @@
+{
+  "dataset": "Synthetic drawings only. Not real road footage.",
+  "training": {
+    "samples": 84,
+    "epochs": 15,
+    "pretrained_classifier": false
+  },
+  "validation_samples": 18,
+  "test": {
+    "samples": 18,
+    "correct": 18,
+    "crop_accuracy": 1,
+    "results": [
+      {
+        "image": "images/demo_0106_no_entry.jpg",
+        "actual": "no_entry",
+        "predicted": "no_entry"
+      },
+      {
+        "image": "images/demo_0071_traffic_light.jpg",
+        "actual": "traffic_light",
+        "predicted": "traffic_light"
+      },
+      {
+        "image": "images/demo_0009_stop.jpg",
+        "actual": "stop",
+        "predicted": "stop"
+      },
+      {
+        "image": "images/demo_0038_speed_limit.jpg",
+        "actual": "speed_limit",
+        "predicted": "speed_limit"
+      },
+      {
+        "image": "images/demo_0037_speed_limit.jpg",
+        "actual": "speed_limit",
+        "predicted": "speed_limit"
+      },
+      {
+        "image": "images/demo_0046_speed_limit.jpg",
+        "actual": "speed_limit",
+        "predicted": "speed_limit"
+      },
+      {
+        "image": "images/demo_0067_traffic_light.jpg",
+        "actual": "traffic_light",
+        "predicted": "traffic_light"
+      },
+      {
+        "image": "images/demo_0073_pedestrian_crossing.jpg",
+        "actual": "pedestrian_crossing",
+        "predicted": "pedestrian_crossing"
+      },
+      {
+        "image": "images/demo_0019_stop.jpg",
+        "actual": "stop",
+        "predicted": "stop"
+      },
+      {
+        "image": "images/demo_0079_pedestrian_crossing.jpg",
+        "actual": "pedestrian_crossing",
+        "predicted": "pedestrian_crossing"
+      },
+      {
+        "image": "images/demo_0016_stop.jpg",
+        "actual": "stop",
+        "predicted": "stop"
+      },
+      {
+        "image": "images/demo_0060_traffic_light.jpg",
+        "actual": "traffic_light",
+        "predicted": "traffic_light"
+      },
+      {
+        "image": "images/demo_0111_no_entry.jpg",
+        "actual": "no_entry",
+        "predicted": "no_entry"
+      },
+      {
+        "image": "images/demo_0012_stop.jpg",
+        "actual": "stop",
+        "predicted": "stop"
+      },
+      {
+        "image": "images/demo_0115_no_entry.jpg",
+        "actual": "no_entry",
+        "predicted": "no_entry"
+      },
+      {
+        "image": "images/demo_0078_pedestrian_crossing.jpg",
+        "actual": "pedestrian_crossing",
+        "predicted": "pedestrian_crossing"
+      },
+      {
+        "image": "images/demo_0043_speed_limit.jpg",
+        "actual": "speed_limit",
+        "predicted": "speed_limit"
+      },
+      {
+        "image": "images/demo_0075_pedestrian_crossing.jpg",
+        "actual": "pedestrian_crossing",
+        "predicted": "pedestrian_crossing"
+      }
+    ]
+  },
+  "checkpoint": "outputs/presentation_demo/models/checkpoints/best.ckpt",
+  "video_duration_seconds": 20,
+  "processing_seconds_including_model_load": 9.909272833,
+  "processing_fps_including_model_load": 20.183115690785826,
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "device": "cpu",
+    "torch_threads": 2
+  },
+  "segments": [
+    {
+      "image": "images/demo_0009_stop.jpg",
+      "annotated_category": "stop",
+      "detections": [
+        {
+          "detector_category": "stop sign",
+          "classifier_category": "stop",
+          "detector_confidence": 0.9522270560264587
+        }
+      ]
+    },
+    {
+      "image": "images/demo_0038_speed_limit.jpg",
+      "annotated_category": "speed_limit",
+      "detections": []
+    },
+    {
+      "image": "images/demo_0071_traffic_light.jpg",
+      "annotated_category": "traffic_light",
+      "detections": [
+        {
+          "detector_category": "traffic light",
+          "classifier_category": "traffic_light",
+          "detector_confidence": 0.8915429711341858
+        }
+      ]
+    },
+    {
+      "image": "images/demo_0073_pedestrian_crossing.jpg",
+      "annotated_category": "pedestrian_crossing",
+      "detections": []
+    },
+    {
+      "image": "images/demo_0106_no_entry.jpg",
+      "annotated_category": "no_entry",
+      "detections": [
+        {
+          "detector_category": "stop sign",
+          "classifier_category": "no_entry",
+          "detector_confidence": 0.8908445835113525
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "synthetic_input.mp4": {
+      "decoded_frames": 200,
+      "width": 640,
+      "height": 456,
+      "fps": 10
+    },
+    "annotated_output.mp4": {
+      "decoded_frames": 200,
+      "width": 640,
+      "height": 456,
+      "fps": 10
+    },
+    "traffic_sign_video_demo.mp4": {
+      "decoded_frames": 200,
+      "width": 1280,
+      "height": 720,
+      "fps": 10
+    }
+  },
+  "limitations": [
+    "Static generated examples assembled into video, not driving footage.",
+    "Only stop-sign and traffic-light detector classes pass the current filter.",
+    "Synthetic cropped-image accuracy is separate from detector or video accuracy.",
+    "No detector mAP evaluation.",
+    "Video uses a separately trained PyTorch classifier, not ONNX runtime."
+  ],
+  "original_experiment": {
+    "data_samples": 10,
+    "train_samples": 7,
+    "validation_samples": 1,
+    "test_samples": 2,
+    "epochs": 1,
+    "pretrained_classifier": false,
+    "test_evaluation_enabled": false,
+    "metrics": {
+      "lr-AdamW": 0.0003000000142492354,
+      "train/loss": 1.6315373182296753,
+      "train/loss_step": 1.6315373182296753,
+      "train/acc": 0.20000000298023224,
+      "train/acc_step": 0.20000000298023224,
+      "train/f1": 0.10000000149011612,
+      "train/f1_step": 0.10000000149011612,
+      "train/precision": 0.06666667014360428,
+      "train/precision_step": 0.06666667014360428,
+      "train/recall": 0.20000000298023224,
+      "train/recall_step": 0.20000000298023224,
+      "val/loss": 0.06923892349004745,
+      "val/acc": 1,
+      "val/f1": 1,
+      "val/precision": 1,
+      "val/recall": 1,
+      "train/loss_epoch": 1.6315373182296753,
+      "train/acc_epoch": 0.20000000298023224,
+      "train/f1_epoch": 0.10000000149011612,
+      "train/precision_epoch": 0.06666667014360428,
+      "train/recall_epoch": 0.20000000298023224
+    }
+  },
+  "demo_reproduction": {
+    "generator_seed": 123,
+    "split_seed": 123,
+    "training_seed": 42,
+    "batch_size": 16,
+    "image_size": 224,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001
+  }
+}
