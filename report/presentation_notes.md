@@ -2,7 +2,7 @@
 
 ## Project Choice
 
-I selected **Real-Time Traffic Sign Detection and Classification for Driver Assistance** because it is practical, understandable, and appropriate for someone learning computer vision for the first time. It is related to intelligent transportation, but it is simpler than a project that detects many vehicle types and colors.
+I selected **Real-Time Traffic Sign Detection and Classification for Driver Assistance** because it is practical, focused, and connected to road safety. It is related to intelligent transportation, but the scope is more manageable than a project that detects many vehicle types and attributes.
 
 ## Why This Is My Own Project
 
@@ -15,7 +15,7 @@ The project uses a two-stage pipeline:
 1. YOLO detects traffic-sign-like objects in a frame.
 2. A ResNet-18 classifier predicts the sign category from the cropped region.
 
-This is a good beginner design because each part has a clear role. If the final prediction is wrong, I can check whether the detection stage missed the sign or whether the classifier mislabeled the crop.
+This design is useful because each part has a clear role. If the final prediction is wrong, I can check whether the detection stage missed the sign or whether the classifier mislabeled the crop.
 
 ## Why YOLO
 
@@ -23,7 +23,7 @@ YOLO is widely used for real-time object detection. It is suitable for video bec
 
 ## Why ResNet-18
 
-ResNet-18 is a standard convolutional neural network. It is powerful enough for traffic sign classification but still small enough for a student project and laptop experiments.
+ResNet-18 is a standard convolutional neural network. It is powerful enough for traffic sign classification but still small enough for laptop experiments.
 
 ## Reproducibility
 
@@ -39,6 +39,16 @@ The project includes:
 ## Evaluation Plan
 
 The classifier is evaluated using accuracy, precision, recall, and F1-score. For a full real-data version, the detector can also be evaluated using mAP.
+
+## Slide Outline
+
+1. Title and project motivation.
+2. Problem statement and selected sign classes.
+3. Dataset format and preprocessing.
+4. Model architecture: YOLO detection and ResNet-18 classification.
+5. Training setup and experiment tracking.
+6. DVC, Docker, and ONNX reproducibility workflow.
+7. Results, limitations, and future improvements.
 
 ## Limitations
 

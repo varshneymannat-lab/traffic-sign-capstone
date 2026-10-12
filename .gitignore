@@ -9,6 +9,7 @@ multirun/
 .hydra/
 *.ckpt
 *.onnx
+yolo11n.pt
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep

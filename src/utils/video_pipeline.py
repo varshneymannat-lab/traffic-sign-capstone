@@ -19,11 +19,12 @@ def load_classifier(
     sign_classes: list[str],
     device: str,
 ) -> TrafficSignClassifierLitModule:
-    model = TrafficSignClassifierLitModule(sign_classes=sign_classes)
     checkpoint_path = Path(checkpoint_path)
-    if checkpoint_path.exists():
-        state = torch.load(checkpoint_path, map_location=device, weights_only=False)
-        model.load_state_dict(state["state_dict"])
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(f"Classifier checkpoint not found: {checkpoint_path}")
+    model = TrafficSignClassifierLitModule(sign_classes=sign_classes, pretrained=False)
+    state = torch.load(checkpoint_path, map_location=device, weights_only=False)
+    model.load_state_dict(state["state_dict"])
     model.to(device)
     model.eval()
     return model

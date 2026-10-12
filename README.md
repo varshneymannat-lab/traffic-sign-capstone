@@ -8,7 +8,7 @@ The project follows the requested modern machine-learning workflow: Hydra config
 
 I selected traffic sign detection because it is practical, focused, and connected to road safety. Traffic signs are visually clear, have meaningful categories, and connect naturally to driver-assistance systems.
 
-Compared with a more complex vehicle type/color project, this scope is easier to explain and defend:
+Compared with a more complex vehicle type/color project, this scope is easier to explain:
 
 - The model learns one clear label: the traffic sign category.
 - The demo dataset is small enough to reproduce quickly.
@@ -53,7 +53,7 @@ src/
   infer_video.py         Run video inference
   export_onnx.py         Export classifier to ONNX
 scripts/                 Dataset preparation and demo-data generation
-tests/                   Unit/smoke tests
+tests/                   Unit tests
 report/                  Technical report and presentation notes
 dvc.yaml                 Reproducible pipeline stages
 Dockerfile               Reproducible environment
@@ -89,6 +89,11 @@ dvc repro
 ```
 
 The generated data is for demonstration and pipeline testing. A real project submission can replace it with a public traffic sign dataset such as GTSDB/GTSRB or a small custom annotated dataset.
+
+## Report And Presentation
+
+- Technical report: [report/technical_report.md](/Users/mannatvarshney/Documents/New%20project/traffic_sign_capstone/report/technical_report.md)
+- Presentation notes: [report/presentation_notes.md](/Users/mannatvarshney/Documents/New%20project/traffic_sign_capstone/report/presentation_notes.md)
 
 ## Setup
 
@@ -144,24 +149,24 @@ Pipeline stages:
 - `train`: runs a one-epoch demonstration training job.
 - `export`: exports the classifier to ONNX.
 
-The default DVC run is intentionally lightweight so it can be reproduced during review. For a more serious experiment, use a real dataset and train longer:
+The default DVC run is intentionally lightweight so it can be reproduced during review. For a full training run, use a real dataset and train longer:
 
 ```bash
 python3 -m src.train model.pretrained=true trainer.max_epochs=20
 ```
 
-## Docker
+## Synthetic Video Demonstration
+
+A separate video demonstration and interpretation guide is available in
+[report/video_demo_notes.md](report/video_demo_notes.md). It uses a separately
+trained classifier and generated images, and shows actual predictions and missed
+detections. It does not replace evaluation on real road footage. Demo videos and
+weights are local outputs under `outputs/presentation_demo/` and are not included
+in ordinary Git tracking.
+
+## Docker Environment
 
 ```bash
 docker build -t traffic-sign-capstone .
 docker run --rm -it -v "$PWD:/workspace" traffic-sign-capstone python3 -m src.train
 ```
-
-## Presentation Talking Points
-
-- I chose traffic signs because they are visually clear and useful in driver-assistance systems.
-- I used a two-stage pipeline because it is easier to understand: first detect a sign, then classify the crop.
-- I used ResNet-18 because it is a standard CNN backbone and not too large.
-- I used Hydra and Lightning so experiments are organized and reproducible.
-- I used DVC so data and model artifacts can be tracked separately from Git code.
-- I exported to ONNX because it shows how a trained model can be prepared for deployment.

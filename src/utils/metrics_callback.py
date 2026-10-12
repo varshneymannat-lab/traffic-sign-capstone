@@ -18,6 +18,6 @@ class JsonMetricsWriter(Callback):
         for key, value in trainer.callback_metrics.items():
             if isinstance(value, torch.Tensor):
                 metrics[key] = float(value.detach().cpu())
-            elif isinstance(value, int | float):
+            elif isinstance(value, (int, float)):
                 metrics[key] = float(value)
         self.output_path.write_text(json.dumps(metrics, indent=2))

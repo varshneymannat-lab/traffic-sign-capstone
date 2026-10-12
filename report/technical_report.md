@@ -8,7 +8,7 @@ This project presents a computer-vision system for detecting and classifying tra
 
 Traffic signs are important for road safety and driver-assistance systems. A model that can recognize signs such as stop signs, speed-limit signs, traffic lights, pedestrian crossings, and no-entry signs can support basic intelligent transportation applications.
 
-This project was selected because it is practical but not too complex for a first computer-vision graduation project. The task is easier to explain than multi-attribute vehicle classification, while still demonstrating object detection, image classification, evaluation, and deployment.
+This project was selected because it is practical and focused. The task is easier to explain than multi-attribute vehicle classification, while still demonstrating object detection, image classification, evaluation, and deployment.
 
 ## 2. Methodology
 
