@@ -157,12 +157,14 @@ python3 -m src.train model.pretrained=true trainer.max_epochs=20
 
 ## Synthetic Video Demonstration
 
-A separate video demonstration and interpretation guide is available in
-[report/video_demo_notes.md](report/video_demo_notes.md). It uses a separately
-trained classifier and generated images, and shows actual predictions and missed
-detections. It does not replace evaluation on real road footage. Demo videos and
-weights are local outputs under `outputs/presentation_demo/` and are not included
-in ordinary Git tracking.
+[Download the 20-second synthetic demonstration video](demo/traffic_sign_demo.mp4).
+
+The [interpretation guide](report/video_demo_notes.md) explains each example.
+The video uses a separately trained classifier and generated images, and shows
+actual predictions and missed detections. It does not replace evaluation on real
+road footage. The presentation copy in `demo/` is included in Git tracking.
+Additional generated outputs and weights under `outputs/presentation_demo/`
+remain local and are not included in ordinary Git tracking.
 
 ## Docker Environment
 

@@ -2,7 +2,7 @@
 
 ## What to open
 
-Open `outputs/presentation_demo/traffic_sign_demo_playback.mp4` if available. The original presentation video is `outputs/presentation_demo/traffic_sign_video_demo.mp4`. It lasts 20 seconds and compares input with actual processed output. Open it in QuickTime Player and pause after each example if you want to explain the results.
+The copy prepared for GitHub is [demo/traffic_sign_demo.mp4](../demo/traffic_sign_demo.mp4). It lasts 20 seconds and compares input with actual processed output. Open it in QuickTime Player and pause after each example if you want to explain the results. The local playback copy is `outputs/presentation_demo/traffic_sign_demo_playback.mp4` and the original generated presentation video is `outputs/presentation_demo/traffic_sign_video_demo.mp4`.
 
 The input consists of static synthetic images assembled into video. It is not driving footage. The boxes and prediction labels come from YOLO and the classifier, not from the known annotations. The annotation category shown below each example is a separate reference label.
 
@@ -31,7 +31,7 @@ The original ten-image dataset, original model checkpoints, and original ONNX mo
 - These crops come from the same simple image generator. This result does not measure real-world generalisation or full-pipeline accuracy.
 - The video still uses the general pretrained YOLO detector and its existing two-category filter.
 - Video inference uses the PyTorch checkpoint. The separately trained demo classifier has not been exported here as a replacement for the original ONNX model.
-- The demo files are under an ignored output directory. They have not been published to GitHub or added to the DVC pipeline.
+- A presentation video copy is prepared in the tracked `demo/` folder for publishing through Git. Generated data, weights, and other outputs remain under an ignored output directory and have not been added to the DVC pipeline. Publishing requires committing and pushing the prepared files.
 
 The machine-readable details are in `outputs/presentation_demo/video_results.json`. All 200 frames in each generated video were decoded to verify frame count and dimensions. In this run, processing the 20-second input took approximately 9.91 seconds including model loading, about 20.18 frames per second, on CPU with two PyTorch threads. This is a measurement on repeated synthetic scenes, not a claim about real-road processing speed.
 
